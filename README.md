@@ -20,7 +20,7 @@ The design is intentionally compact and inexpensive to fabricate (single-board, 
 | Amplifier | TI TPA3116D2DAD — Class D, BTL stereo |
 | Output power | Up to ~50 W/channel (supply-dependent) |
 | Speaker configuration | Stereo, Bridge-Tied Load |
-| Logic supply | 3.3 V via LM1117-3.3 LDO + MCP111T-270E/TT reset supervisor |
+| Logic supply | Takes 12V PVCC input, 3.3 V regulator via LM1117-3.3 LDO + MCP111T-270E/TT reset supervisor for BM83|
 | Board | 2-layer FR-4, ~100 × 100 mm |
 | EDA | Altium Designer |
 
@@ -107,8 +107,11 @@ Most components are stocked at Digi-Key and Mouser. The BM83 has occasional supp
 A few things that came out of this design that I'd carry forward to the next revision:
 
 - **Reset supervisor is non-negotiable.** An earlier iteration tied the BM83 reset pin to the 3.3 V rail through a simple pull-up. The MCP111T was added after observing the BM83 occasionally powering up into an undefined state on slow rail rise. Explicit POR handling is cheap and worth it.
-- **Star grounding paid off.** Iterations with a single solid GND plane showed audible noise on the speakers that correlated with bass-heavy content — high-current speaker returns were modulating the analog reference. Splitting SGND from GND and tying them at a single point cleared it.
+- **Signal grounding paid off.** Iterations with a single solid GND plane showed audible noise on the speakers that correlated with bass-heavy content — high-current speaker returns were modulating the analog reference. Splitting SGND from GND and tying them at a single point cleared it.
 - **Antenna keep-out matters.** The first layout had ground pour right up to the BM83 antenna. Pulling the pour back to the manufacturer-defined keep-out improved Bluetooth range noticeably.
+- **Checking data sheets prior to designing.** There were several times where I would design haphazardly, or lazily adding a footprint, and then end up checking the data sheet and realizing that the pin count is wrong, or the module is a different component than what I needed, etc.
+- **Power route widths are non-negotiable and must be accounted for in the design.** When finishing the basic routing I soon realized afterwards that the routes all needed to be readjusted anyway to account for the increased width of the power routes, such as the 12V power supply and 3.3V regulator power.
+- **Always expect to use more than one layer** While this seem obvious now, I assumed when making the schematic that I would be able to mathematically fit all routes together without crossing. Needless to say, I soon realized after starting the PCB design that this was impossible, at least for a project of this complexity.
 
 ## License
 
@@ -121,4 +124,4 @@ The Altium source files in this repository were created using an Altium Educatio
 ## Author
 
 **Connor Carlisle** — Electrical Engineering, University of Mississippi
-[GitHub](https://github.com/[your-username]) · [LinkedIn](https://linkedin.com/in/[your-handle])
+[GitHub](https://github.com/[connor-carlisle]) · [LinkedIn](https://linkedin.com/in/[connor-carlisle])
