@@ -2,9 +2,7 @@
 
 A stereo Bluetooth speaker designed in Altium Designer around the **Microchip BM83** Bluetooth audio module and the **TI TPA3116D2DAD** Class D amplifier. Single-board design with a hierarchical schematic, mixed-signal grounding, and RF-aware antenna placement.
 
-<div align="center">
-  <img src="images/3d-render-iso.png" alt="3D render of assembled board" width="600"/>
-</div>
+<img width="1042" height="676" alt="PCB 3D Top View" src="https://github.com/user-attachments/assets/5d02ce84-9b29-44f8-a4f3-59439045990f" />
 
 ---
 
@@ -28,17 +26,12 @@ The design is intentionally compact and inexpensive to fabricate (single-board, 
 
 ## Block diagram
 
-<div align="center">
-  <img src="images/block-diagram.png" alt="Audio signal path block diagram" width="700"/>
-</div>
 
-```
   Power input ──┬──────────────────────► TPA3116D2 (Class D amp) ──► BTL LC filter ──► Speakers
                 │
                 └─► LM1117-3.3 LDO ──┬─► BM83 (Bluetooth audio) ──► (audio out to amp)
                                      │
                                      └─► MCP111T reset supervisor
-```
 
 ## Design decisions
 
