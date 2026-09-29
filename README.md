@@ -99,8 +99,10 @@ Most components are stocked at Digi-Key and Mouser. The BM83 has occasional supp
 
 - ✅ Design complete, schematic ERC clean
 - ✅ Manufacturing outputs generated
-- 🔲 Boards ordered / assembled
-- 🔲 Bring-up and validation
+- ✅ Prototype built
+- 🔲 Bring-up and validation: output power, THD, idle noise
+
+*Developed with AI assistance (Claude); design decisions and verification are my own.*
 
 ## Lessons learned
 
